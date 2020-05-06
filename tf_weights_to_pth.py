@@ -141,10 +141,12 @@ if __name__ == '__main__':
         model, 
         depth_multiplier=depth_multiplier,
         finegrain_classification_mode=finegrain_classification_mode)
-    model_pth = model_pth().to(device)
+    model_pth = model_pth()
         
     # Convert tensorflow pretrained weights to pytorch weights
     converter.convert(model_pth, checkpoint_path)
+    
+    model_pth = model_pth.to(device)
     
     model_pth.eval()
     with torch.no_grad():
